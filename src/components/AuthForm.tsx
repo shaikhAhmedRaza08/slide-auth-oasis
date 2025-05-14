@@ -27,9 +27,9 @@ const AuthForm = () => {
             if (isLogin) {
                 await login(username, password);
             } else {
-                // await signup(username, password);
-                const response = await signupUser({username, password});
-                console.log(response);
+                await signup(username, password);
+                // const response = await signupUser({username, password});
+                // console.log(response);
             }
 
             toast.success(isLogin ? "Successfully logged in!" : "Account created successfully!");

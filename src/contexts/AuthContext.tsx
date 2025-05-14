@@ -103,8 +103,8 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
             //     username: username
             // };
 
-            setCurrentUser({id, username: UserName});
-            localStorage.setItem("currentUser", JSON.stringify({id, username: UserName}));
+            // setCurrentUser({id, username: UserName});
+            // localStorage.setItem("currentUser", JSON.stringify({id, username: UserName}));
             setError(null);
         } catch (error) {
             if (error instanceof Error) {
