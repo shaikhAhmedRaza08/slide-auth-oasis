@@ -10,9 +10,8 @@ const AuthForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   
   const { login, signup } = useAuth();
   const navigate = useNavigate();
@@ -26,9 +25,9 @@ const AuthForm = () => {
     
     try {
       if (isLogin) {
-        await login(email, password);
+        await login(username, password);
       } else {
-        await signup(email, password, name);
+        await signup(username, password);
       }
       
       toast.success(isLogin ? "Successfully logged in!" : "Account created successfully!");
@@ -44,9 +43,8 @@ const AuthForm = () => {
   const toggleForm = () => {
     setIsLogin(!isLogin);
     // Reset form fields when toggling
-    setEmail("");
+    setUsername("");
     setPassword("");
-    setName("");
   };
 
   return (
@@ -100,14 +98,14 @@ const AuthForm = () => {
                 <h2 className="text-2xl font-bold text-slate-800 mb-6">Welcome back</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="login-email" className="block text-sm font-medium text-slate-700 mb-2">
-                      Email
+                    <label htmlFor="login-username" className="block text-sm font-medium text-slate-700 mb-2">
+                      Username
                     </label>
                     <input
-                      id="login-email"
+                      id="login-username"
                       type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       required
                       className="block w-full px-4 py-3 rounded-lg border border-slate-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                       placeholder="your@email.com"
@@ -194,29 +192,14 @@ const AuthForm = () => {
                 <h2 className="text-2xl font-bold text-slate-800 mb-6">Create an account</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="signup-name" className="block text-sm font-medium text-slate-700 mb-2">
-                      Full Name
+                    <label htmlFor="signup-username" className="block text-sm font-medium text-slate-700 mb-2">
+                      Username
                     </label>
                     <input
-                      id="signup-name"
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                      className="block w-full px-4 py-3 rounded-lg border border-slate-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                      placeholder="John Doe"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="signup-email" className="block text-sm font-medium text-slate-700 mb-2">
-                      Email
-                    </label>
-                    <input
-                      id="signup-email"
+                      id="signup-username"
                       type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       required
                       className="block w-full px-4 py-3 rounded-lg border border-slate-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                       placeholder="your@email.com"

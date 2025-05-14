@@ -22,7 +22,7 @@ const Dashboard = () => {
           <div className="flex items-center space-x-4">
             <div className="flex items-center text-sm text-slate-700">
               <User className="h-5 w-5 mr-1 text-slate-500" />
-              <span>{currentUser?.name || currentUser?.email}</span>
+              <span>{currentUser?.username}</span>
             </div>
             <button
               onClick={handleLogout}

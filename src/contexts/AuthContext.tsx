@@ -3,15 +3,14 @@ import React, { createContext, useState, useContext, useEffect, ReactNode } from
 
 interface User {
   id: string;
-  email: string;
-  name?: string;
+  username: string;
 }
 
 interface AuthContextType {
   currentUser: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  signup: (email: string, password: string, name: string) => Promise<void>;
+  login: (username: string, password: string) => Promise<void>;
+  signup: (username: string, password: string) => Promise<void>;
   logout: () => void;
   error: string | null;
 }
@@ -41,21 +40,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   // Mock login function
-  const login = async (email: string, password: string) => {
+  const login = async (username: string, password: string) => {
     setLoading(true);
     try {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
       
-      // For demo purposes, we'll accept any login with a valid email format
-      if (!email.includes('@')) {
-        throw new Error("Invalid email format");
+      // For demo purposes, we'll accept any login with a valid username format
+      if (!username.includes('@')) {
+        throw new Error("Invalid username format");
       }
       
       // Create mock user
       const user = {
         id: Math.random().toString(36).substring(2, 9),
-        email: email
+        username: username
       };
       
       setCurrentUser(user);
@@ -74,22 +73,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Mock signup function
-  const signup = async (email: string, password: string, name: string) => {
+  const signup = async (username: string, password: string) => {
     setLoading(true);
     try {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
       
-      // Validate email format
-      if (!email.includes('@')) {
-        throw new Error("Invalid email format");
+      // Validate username format
+      if (!username.includes('@')) {
+        throw new Error("Invalid username format");
       }
       
       // Create mock user
       const user = {
         id: Math.random().toString(36).substring(2, 9),
-        email: email,
-        name: name
+        username: username
       };
       
       setCurrentUser(user);
